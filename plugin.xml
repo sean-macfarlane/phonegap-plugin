@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  id="phonegap-plugin-kiip"
+  version="1.0.0">
+
+  <name>Kiip</name>
+
+  <description>
+    Interface into the Kiip SDK APIs.
+  </description>
+
+  <license>MIT</license>
+
+  <engines>
+    <engine name="cordova" version=">=3.0.0"/>
+  </engines>
+
+  <js-module src="kiipPlugin.js" name="Kiip">
+    <clobbers target="window.plugins.Kiip" />
+  </js-module>
+
+  <!-- ios -->
+  <platform name="ios">
+
+    <config-file target="config.xml" parent="/*">
+      <feature name="KiipPlugin">
+        <param name="ios-package" value="KiipPhoneGapPlugin"/>
+      </feature>
+    </config-file>
+
+    <header-file src="src/ios/KiipPhoneGapPlugin.h"/>
+    <source-file src="src/ios/KiipPhoneGapPlugin.m"/>
+  </platform>
+
+  <!-- android -->
+
+  <platform name="android">
+
+    <config-file target="res/xml/config.xml" parents="/*">
+      <feature name="KiipPlugin">
+        <param name="android-package" value="me.kiip.api.phonegap.KiipPhoneGapPlugin"/>
+      </feature>
+    </config-file>
+    <source-file src="src/android/me/kiip/api/phonegap/KiipPhoneGapPlugin.java" target-dir="src/me/kiip/api/phonegap" />
+
+    </platform>
+
+</plugin>

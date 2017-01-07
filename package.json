@@ -1,0 +1,25 @@
+{
+  "name": "Kiip",
+  "version": "1.0.0",
+  "description": "\n    Interface into the Kiip SDK APIs.\n  ",
+  "cordova": {
+    "id": "phonegap-plugin-kiip",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-ios",
+    "cordova-android"
+  ],
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    }
+  ],
+  "author": "Kiip",
+  "license": "MIT"
+}

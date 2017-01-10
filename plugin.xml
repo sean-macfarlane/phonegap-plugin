@@ -32,6 +32,12 @@
     <header-file src="src/ios/KiipPhoneGapPlugin.h"/>
     <source-file src="src/ios/KiipPhoneGapPlugin.m"/>    
     <framework src="libs/KiipSDK.framework" custom="true" />
+    <framework src="CoreTelephony.framework" />
+    <framework src="QuartzCore.framework" />
+    <framework src="SystemConfiguration.framework" />
+    <framework src="AdSupport.framework" />
+    <framework src="Passkit.framework" />
+    <framework src="MediaPlayer.framework" />
   </platform>
 
   <!-- android -->

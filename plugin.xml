@@ -43,7 +43,7 @@
       </feature>
     </config-file>
     <source-file src="src/android/me/kiip/api/phonegap/KiipPhoneGapPlugin.java" target-dir="src/me/kiip/api/phonegap" />
-
+    <framework src="libs/KiipSDK.jar" custom="true" />
     </platform>
 
 </plugin>

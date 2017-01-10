@@ -1,57 +1,19 @@
-Kiip PhoneGap Plugin v2.0.0
+Kiip PhoneGap Plugin v3.0.0
 ===============================
 
-A Phonegap plugin for the Kiip SDK. Supports iOS and Android.
+A Cordova plugin for the Kiip SDK. Supports the latest iOS and Android versions.
+Updated by Sean Macfarlane.
 
-Installation Instructions for Android
+This plugin has been [forked] [https://github.com/kiip/phonegap-plugin] and updated to work as a Cordova plugin easily. As well as to work with the latest iOS and Android platforms
+
+Installation
 ------------------------------
-
-1. This guide assumes you've already installed and setup the PhoneGap SDK in your Android project. Take a look at the [Getting Started Guide] [phonegap-guide-android] for more help.
-
-2. You need to download the Kiip SDK from the [developer area] [docs.kiip.me]  and copy the files as directed. Don't worry about editing the Android Manifest or anything after that.
-
-3. Download the Android plugin (it consists of a javascript and a java file). You will need to copy those into the exact same directories as they are currently in. You should have something like this:
-
-    ```
-    /assets/www/kiipPlugin.js
-    /assets/www/cordova-{version}.js
-    /assets/www/index.html
-    /res/drawable/*/kp*.png
-    /libs/cordova-{version}.jar
-    /libs/kiip-{version}.jar
-    /libs/android-support-v4.jar
-    /src/me/kiip/api/phonegap/KiipPhoneGapPlugin.java
-    ```
-
-4. Make sure both the Kiip and Cordova library are included in your build path.
-
-5. Add the following line to your `/res/xml/config.xml`:
-
-    `<plugin name="KiipPlugin" value="me.kiip.api.phonegap.KiipPhoneGapPlugin" />`
-
-6. In your `index.html` include the `kiipPlugin.js` file in your documents `<head>`:
-
-    `<script type="text/javascript" charset="utf-8" src="kiipPlugin.js"></script>`
-
-7. On the [resume] [resume] callback you will need to call `kiip.startSession(success, failure)`. Calling startSession before initialization will cause crashes.
-
-8. On the [pause] [pause] callback you will need to call `kiip.endSession(success, failure)`.
-
-Installation Instructions for iOS
-----------------------------------
-
-1. This guide assumes you've already installed and setup the PhoneGap SDK in your iOS project. Take a look at the [Getting Started Guide] [phonegap-guide-ios] for more help.
-
-2. You need to download the Kiip SDK from the [developer area] [docs.kiip.me] and copy the files as directed into XCode.
-
-3. Download the iOS plugin (it consists of a javascript file, obj-c header and implementation file).
-
-4. Install the iOS plugin.
+cordova plugin add https://github.com/sean-macfarlane/phonegap-plugin.git
 
 Usage Instructions
 -------------------
 
-1. You should have the Kiip SDK and Plugin all installed now. To use the SDK you will need to initialize Kiip by doing:
+1. To use the SDK you will need to initialize Kiip by doing:
 
     	kiip.init(api_key, api_secret, successCallback, failureCallback);
 

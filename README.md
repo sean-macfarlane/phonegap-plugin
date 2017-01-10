@@ -4,7 +4,7 @@ Kiip PhoneGap Plugin v3.0.0
 A Cordova plugin for the Kiip SDK. Supports the latest iOS and Android versions.
 Updated by Sean Macfarlane.
 
-This plugin has been [forked] [https://github.com/kiip/phonegap-plugin] and updated to work as a Cordova plugin easily. As well as to work with the latest iOS and Android platforms
+This plugin has been [forked] [forked] and updated to work as a Cordova plugin easily. As well as to work with the latest iOS and Android platforms
 
 Installation
 ------------------------------
@@ -52,3 +52,4 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 [resume]: http://docs.phonegap.com/en/2.2.0/cordova_events_events.md.html#resume
 [pause]: http://docs.phonegap.com/en/2.2.0/cordova_events_events.md.html#pause
 [kiip.me]: http://docs.kiip.com/#support
+[forked]: https://github.com/kiip/phonegap-plugin

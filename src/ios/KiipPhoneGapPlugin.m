@@ -3,7 +3,7 @@
 //  PhoneGapTest
 //
 //  Created by Nick HS on 10/30/12.
-//
+//  Edited by Sean Macfarlane on 1/10/2017
 //
 
 #import "KiipPhoneGapPlugin.h"
@@ -22,48 +22,39 @@
     return self;
 }
 
-- (void)dealloc {
-    [self.contentCallbackId release];
-    [super dealloc];
-}
-
 - (void) initializeKiip:(CDVInvokedUrlCommand*)command
 {
     NSString* APP_KEY = [command.arguments objectAtIndex:0];
     NSString* APP_SECRET = [command.arguments objectAtIndex:1];
-
+    
     Kiip *kiip = [[Kiip alloc] initWithAppKey:APP_KEY andSecret:APP_SECRET];
     kiip.delegate = self;
     [Kiip setSharedInstance:kiip];
     NSLog(@"Kiip inited");
-
+    
     CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-    NSString* javascript = [pluginResult toSuccessCallbackString:command.callbackId];
-
-    [self writeJavascript:javascript];
+    
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 - (void) saveMoment:(CDVInvokedUrlCommand*)command
 {
     CDVPluginResult* pluginResult = nil;
-    NSString* javaScript = nil;
-
+    
     NSLog(@"Saving Moment");
-
+    
     @try {
         NSString* momentId = [command.arguments objectAtIndex:0];
-
+        
         [[Kiip sharedInstance] saveMoment:momentId withCompletionHandler:nil];
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-        javaScript = [pluginResult toSuccessCallbackString:command.callbackId];
     }
     @catch (NSException *exception) {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_JSON_EXCEPTION
                                          messageAsString:[exception reason]];
-        javaScript = [pluginResult toErrorCallbackString:command.callbackId];
     }
-
-    [self writeJavascript:javaScript];
+    
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 // #pragma mark- virtual currency
@@ -72,12 +63,11 @@
 {
     NSLog(@"listenContent called");
     CDVPluginResult* pluginResult = nil;
-    NSString* javaScript = nil;
     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_NO_RESULT];
     [pluginResult setKeepCallbackAsBool:YES];
     self.contentCallbackId = command.callbackId;
-    javaScript = [pluginResult toSuccessCallbackString:command.callbackId];
-    [self writeJavascript:javaScript];
+    
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 - (void) kiip:(Kiip *)kiip didReceiveContent:(NSString *)content quantity:(int)quantity transactionId:(NSString *)transactionId signature:(NSString *)signature {
@@ -88,30 +78,29 @@
                           transactionId, @"transactionId",
                           signature, @"signature",
                           nil];
-
+    
     CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:dict];
     [pluginResult setKeepCallbackAsBool:YES];
-
-    NSString* javascript = [pluginResult toSuccessCallbackString:self.contentCallbackId];
-    [self writeJavascript:javascript];
+    
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:self.contentCallbackId];
 }
 
 // #pragma mark - video callbacks
 
 -(void) onVideo:(CDVInvokedUrlCommand*)command {
-
+    
 }
 
 -(void) kiipVideoPlaybackDidBegin:(Kiip*)kiip {
     NSLog(@"VideoPlayed");
     CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-    [pluginResult setKeepCallbackAsBook:YES];
+    [pluginResult setKeepCallbackAsBool:YES];
 }
 
 -(void) kiipVideoPlaybackDidEnd:(Kiip*)kiip {
     NSLog(@"VideoDismissed");
     CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-    [pluginResult setKeepCallbackAsBook:YES];
+    [pluginResult setKeepCallbackAsBool:YES];
 }
 
 @end

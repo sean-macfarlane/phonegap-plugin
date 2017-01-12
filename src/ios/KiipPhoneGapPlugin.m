@@ -103,4 +103,46 @@
     [pluginResult setKeepCallbackAsBool:YES];
 }
 
+- (void) setEmail:(CDVInvokedUrlCommand*)command
+{
+    CDVPluginResult* pluginResult = nil;
+    
+    NSLog(@"Setting Email");
+    
+    @try {
+        NSString* email = [command.arguments objectAtIndex:0];
+        
+        Kiip *kiip = [Kiip sharedInstance];
+        kiip.email = email;
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+    }
+    @catch (NSException *exception) {
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_JSON_EXCEPTION
+                                         messageAsString:[exception reason]];
+    }
+    
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
+- (void) setGender:(CDVInvokedUrlCommand*)command
+{
+    CDVPluginResult* pluginResult = nil;
+    
+    NSLog(@"Setting Gender");
+    
+    @try {
+        NSString* gender = [command.arguments objectAtIndex:0];
+        
+        Kiip *kiip = [Kiip sharedInstance];
+        kiip.gender = gender;
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+    }
+    @catch (NSException *exception) {
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_JSON_EXCEPTION
+                                         messageAsString:[exception reason]];
+    }
+    
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
 @end

@@ -13,6 +13,14 @@ Kiip.prototype.saveMoment = function(key, successCallback, failureCallback) {
 	return cordova.exec(successCallback, failureCallback, 'KiipPlugin', 'saveMoment', [key]);
 };
 
+Kiip.prototype.setEmail = function(key, successCallback, failureCallback) {
+	return cordova.exec(successCallback, failureCallback, 'KiipPlugin', 'setEmail', [key]);
+};
+
+Kiip.prototype.setGender = function(key, successCallback, failureCallback) {
+	return cordova.exec(successCallback, failureCallback, 'KiipPlugin', 'setGender', [key]);
+};
+
 Kiip.prototype.startSession = function(successCallback, failureCallback) {
 	return cordova.exec(successCallback, failureCallback, 'KiipPlugin', 'startSession', []);
 };

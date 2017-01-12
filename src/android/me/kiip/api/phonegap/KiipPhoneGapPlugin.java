@@ -62,6 +62,28 @@ public class KiipPhoneGapPlugin extends CordovaPlugin implements OnContentListen
 		} else if (action.equals("endSession")) {
 			endSession();
 			return true;
+		} else if (action.equals("setEmail")) {
+			final String data;
+			try {
+				data = args.getString(0);
+			} catch (JSONException e) {
+				e.printStackTrace();
+				callbackContext.error("JSON Exception");
+				return false;
+			}
+			setEmail(data);
+			return true;
+		} else if (action.equals("setGender")) {
+			final String data;
+			try {
+				data = args.getString(0);
+			} catch (JSONException e) {
+				e.printStackTrace();
+				callbackContext.error("JSON Exception");
+				return false;
+			}
+			setGender(data);
+			return true;
 		} else if (action.equals("saveMoment")) {
 			final String momentName;
 
@@ -118,6 +140,18 @@ public class KiipPhoneGapPlugin extends CordovaPlugin implements OnContentListen
 
 	private PluginResult endSession() {
 		Kiip.getInstance().endSession(null);
+		PluginResult result = new PluginResult(PluginResult.Status.OK);
+		return result;
+	}
+
+	private PluginResult setEmail(String email) {
+		Kiip.getInstance().setEmail(email);
+		PluginResult result = new PluginResult(PluginResult.Status.OK);
+		return result;
+	}
+
+	private PluginResult setGender(String gender) {
+		Kiip.getInstance().setGender(gender);
 		PluginResult result = new PluginResult(PluginResult.Status.OK);
 		return result;
 	}
